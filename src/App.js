@@ -1,31 +1,26 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
+import {connect} from 'react-redux';
+
 import {login} from './Utils/Api';
 
-export default class App extends Component {
+import LoginButton from './Atoms/LoginButton';
 
-  constructor(props) {
-    super(props);
-    this._login = this._login.bind(this);
-  }
-
-  _login() {
-    login(Math.random())
-      .then(token => {
-        console.log(token);
-      })
-      .catch((e) => {
-        console.log('error');
-      });
-  }
-
+class App extends PureComponent {
   render() {
     return (
       <View>
-          <TouchableOpacity style={{marginTop: 20}} onPress={this._login}>
-            <Text>LOGIN</Text>
-        </TouchableOpacity>
+          <LoginButton />
+          <Text style={{marginTop: 20}}>{this.props.logged ? 'User Logged' : 'User not Logged'}</Text>
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+      logged: state.session.token
+  }
+};
+
+export default connect(mapStateToProps)(App);

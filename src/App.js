@@ -5,12 +5,14 @@ import {connect} from 'react-redux';
 import {login} from './Utils/Api';
 
 import LoginButton from './Atoms/LoginButton';
+import CheckApi from './Atoms/CheckApi';
 
 class App extends PureComponent {
   render() {
     return (
       <View>
           <LoginButton />
+          <CheckApi />
           <Text style={{marginTop: 20}}>{this.props.logged ? 'User Logged' : 'User not Logged'}</Text>
       </View>
     );

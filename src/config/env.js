@@ -1,1 +1,1 @@
-export const TOKEN_PREFIX = ''
+export const TOKEN_PREFIX_ENV = ''
